@@ -1,4 +1,4 @@
-public class TryCatchStarter {
+public class ExerciseThirteen {
     public static void main(String[] args) throws Exception {
         System.out.println("Starting Point");
         int a = 3;
