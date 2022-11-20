@@ -1,3 +1,4 @@
+package Exercises;
 public class Exercise1Page15 {
     public static void main(String[] args){
         final double QUARTER_VALUE = .25;

@@ -40,6 +40,5 @@ public class PracticeProblems3 {
         {
             System.out.println(numList2.get(element-1));
         }
-
     }
 }

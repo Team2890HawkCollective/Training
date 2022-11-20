@@ -1,3 +1,4 @@
+package Exercises;
 public class Exercise2Page30 {
     public static void main(String args[]){
         int inputYear = 400; 

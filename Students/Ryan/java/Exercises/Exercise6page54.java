@@ -1,3 +1,4 @@
+package Exercises;
 import java.util.ArrayList;
 
 public class Exercise6page54 {

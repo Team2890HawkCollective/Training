@@ -1,3 +1,4 @@
+package Exercises;
 public class Exercise3Page35 {
     public static void main(String args[]){
         String currentDay = "Tuesday";
