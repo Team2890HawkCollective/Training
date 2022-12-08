@@ -8,9 +8,9 @@ public class Exercise11Main {
 
 
 
-   Holiday holiday1 = new Holiday("Christmas", 25, "December");
-   Holiday holiday2 = new Holiday("Christmas", 25, "February");
-   
+   Holiday holiday1 = new Holiday("Independence Day", 4, "July");
+   Holiday holiday2 = new Holiday("Canadian Independence Day", 1, "July");
+
     if(holiday1.inSameMonth(holiday2))
     {
         System.out.println("Holidays are in the same month");
@@ -21,7 +21,11 @@ public class Exercise11Main {
     }
    
     }
-}
 
+
+    Movie movie1 = new Movie("Casino Royale", "Eon Productions", "PG-13");
+
+
+}
 
 

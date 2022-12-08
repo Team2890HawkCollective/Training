@@ -19,5 +19,21 @@ public class Movie {
         this.rating = "PG";
     }
 
-    public static 
+    public Movie[] getPG(Movie[] input)
+    {
+        Movie[] pgMovies = new Movie[input.length];
+        for (int i = 0; i < input.length; i++)
+        {
+            if (input[i].rating == "PG")
+            {
+                pgMovies[i] = input[i];
+            }
+            else 
+            {
+                pgMovies[i] = null;
+            }
+        }
+        return pgMovies;
+    }
+
 }

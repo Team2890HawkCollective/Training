@@ -33,4 +33,14 @@ public class Holiday {
         else
         return false; 
     }
+    public double avgDate(Holiday[] input)
+    {   
+        double avgDate = 0;
+        for (int i = 0; i < input.length; i++)
+        {
+            avgDate += input[i].getDay();
+        }
+        avgDate = avgDate / input.length;
+        return avgDate; 
+    }
 }
