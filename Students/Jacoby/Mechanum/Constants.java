@@ -27,11 +27,11 @@ public final class Constants
     public static final double SPEED_MOD = 1;
 
     public static final int POLARITY_SWAP = -1;
-
-    public static final double frontLeftMotorCoeff = 1.0;
-    public static final double frontRightMotorCoeff = 1.0;
-    public static final double backLeftMotorCoeff = 1.0;
-    public static final double backRightMotorCoeff = 1.0;
+    //FRONT_LEFT_MOTOR_COEFF
+    public static final double FRONT_LEFT_MOTOR_COEFF = 1.0;
+    public static final double FRONT_RIGHT_MOTOR_COEFF = 1.0;
+    public static final double BACK_LEFT_MOTOR_COEFF = 1.0;
+    public static final double BACK_RIGHT_MOTOR_COEFF = 1.0;
     
     public static final int FRONT_LEFT_POLARITY = -1;
     public static final int FRONT_RIGHT_POLARITY = 1;

@@ -43,11 +43,7 @@ public class DriveTrain extends SubsystemBase
   private static double deltaZ;
 
   private static double rInput;
-  private static boolean isMecanum = false;
-
-  private static DoubleSolenoid butterFlySolenoid = null;
-  private static Compressor phCompressor = null;
-
+  
   private static boolean brakeBooleanToggle = false;
 
   private static int[] motorPolarity = {Constants.FRONT_LEFT_POLARITY, Constants.FRONT_RIGHT_POLARITY, Constants.BACK_LEFT_POLARITY, Constants.BACK_RIGHT_POLARITY};
@@ -121,6 +117,28 @@ public class DriveTrain extends SubsystemBase
     yInput = -(MathUtil.applyDeadband(driverController.getLeftY(), .2));
     rInput = (MathUtil.applyDeadband(driverController.getRightX(), .2));
 
+
+    if(rInput=0)
+    {
+
+
+    }
+    else 
+    {
+      
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    /* 
+
+    OLD CODE FROM LAST YEAR
+
     //2/8/2023 USE THE new Rotation2d() THING TO PASS A BLANK GYRO VALUE IF NOT USING GYRO !!!!!!!!!!!!!!
 
     if(rInput != 0){
@@ -134,6 +152,7 @@ public class DriveTrain extends SubsystemBase
       new Rotation2d(), 
       motorCoefficients);
     }
+    */
   }
 
 }

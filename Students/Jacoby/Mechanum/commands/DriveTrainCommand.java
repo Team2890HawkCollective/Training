@@ -18,14 +18,15 @@ public class DriveTrainCommand extends CommandBase
   public DriveTrainCommand(DriveTrain subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(m_subsystem);
   }
 
 
   @Override
   public void execute() 
   {
-
+    DriveTrain.driveMecanum();
+    DriveTrain.brakeModeToggle();
   }
 
 
