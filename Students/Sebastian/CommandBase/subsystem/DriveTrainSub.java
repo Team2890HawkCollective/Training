@@ -92,9 +92,9 @@ public class DriveTrainSub extends SubsystemBase {
   {
     chassisDrive.driveCartesian
     (
-      driverController.getLeftX() * -1 * Constants.SPEED_MOD, 
+      driverController.getLeftX() * Constants.POLARITY_SWAP * Constants.SPEED_MOD, 
       driverController.getLeftY() * Constants.SPEED_MOD, 
-      driverController.getRightX() * -1 * Constants.SPEED_MOD,
+      driverController.getRightX() * Constants.POLARITY_SWAP * Constants.SPEED_MOD,
       new Rotation2d(), 
       new double[] {0.0,0.0,0.0,0.0}
     );
