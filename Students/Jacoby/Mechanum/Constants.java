@@ -26,7 +26,7 @@ public final class Constants
 
 
 
-    public static final double SPEED_MOD = 1;
+    public static final double SPEED_MOD = 0.2;
 
     public static final int POLARITY_SWAP = -1;
     //FRONT_LEFT_MOTOR_COEFF
@@ -40,7 +40,6 @@ public final class Constants
     public static final int BACK_LEFT_POLARITY = 1;
     public static final int BACK_RIGHT_POLARITY = -1;
 
-
-    public static final int DEADSPACE_POSITIVE = 0.2;
-    public static final int DEADSPACE_NEGATIVE = -0.2;
+    public static final double DEADSPACE_POSITIVE = 0.2;
+    public static final double DEADSPACE_NEGATIVE = -0.2;
 }
