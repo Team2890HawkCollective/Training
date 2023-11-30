@@ -2,6 +2,8 @@ package Jacoby.Mechanum.subsystems;
 
 import java.time.format.ResolverStyle;
 
+import javax.lang.model.util.ElementScanner14;
+
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -91,21 +93,47 @@ public class DriveTrain extends SubsystemBase
     backRightSparkMax.set(-0.2);
   }
   public static void driveBackward(){
-    chassisDrive.driveCartesian(0, -.2, 0, null, motorCoefficients);
+    frontLeftSparkMax.set(0.2);
+    frontRightSparkMax.set(-0.2);
+    backLeftSparkMax.set(-0.2);
+    backRightSparkMax.set(0.2);
   }
   public static void driveLeft(){
-    chassisDrive.driveCartesian(.2, 0, 0, null, motorCoefficients);
+    frontLeftSparkMax.set(0.2);
+    frontRightSparkMax.set(-0.2);
+    backLeftSparkMax.set(.2);
+    backRightSparkMax.set(-0.2);
   }
   public static void driveRight(){
-    chassisDrive.driveCartesian(-.2, 0, 0, null, motorCoefficients);
+    frontLeftSparkMax.set(-0.2);
+    frontRightSparkMax.set(0.2);
+    backLeftSparkMax.set(-0.2);
+    backRightSparkMax.set(0.2);
   }
   public static void driveAngleRight(){
-    chassisDrive.driveCartesian(0, 0, .2, null, motorCoefficients);
+    frontLeftSparkMax.set(-0.2);
+    frontRightSparkMax.set(0);
+    backLeftSparkMax.set(.2);
+    backRightSparkMax.set(0);
   }
-  public static void driveAngeLeft(){
-    chassisDrive.driveCartesian(0, 0, -.2, null, motorCoefficients);
+  public static void driveAngleLeft(){
+    frontLeftSparkMax.set(0);
+    frontRightSparkMax.set(0.2);
+    backLeftSparkMax.set(0);
+    backRightSparkMax.set(-0.2);
   }
-
+  public static void driveAngleRightBack(){
+    frontLeftSparkMax.set(0.2);
+    frontRightSparkMax.set(0);
+    backLeftSparkMax.set(-0.2);
+    backRightSparkMax.set(0);
+  }
+  public static void driveAngleLeftBack(){
+    frontLeftSparkMax.set(0);
+    frontRightSparkMax.set(-0.2);
+    backLeftSparkMax.set(0);
+    backRightSparkMax.set(0.2);
+  }
 
 
 
@@ -120,12 +148,51 @@ public class DriveTrain extends SubsystemBase
 
     if(rInput=0)
     {
-
-
+      if (xInput>0)
+      {
+        if(yInput>0)
+        {
+          driveAngleLeft();
+        }
+        else if (yInput<0)
+        {
+          driveAngleLeftBack();
+        }
+        else 
+        {
+          driveLeft();
+        }
+      }
+      else if (xInput<-0)
+      {
+        if(yInput>0)
+        {
+          driveAngleRight();
+        }
+        else if (yInput<0)
+        {
+          driveAngleRghtBack();
+        }
+        else 
+        {
+          driveRight();
+        }
+      }
+      else 
+      {
+        if(yInput>0)
+        {
+          driveForward();
+        }
+        else if (yInput<0)
+        {
+          driveBackward();
+        }
+      }
     }
     else 
     {
-      
+      twist(rInput);
     }
     
     

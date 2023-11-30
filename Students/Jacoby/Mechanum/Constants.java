@@ -4,6 +4,8 @@
 
 package edu.wpi.first.wpilibj.templates.commandbased;
 
+import java.util.stream.IntStream;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -37,4 +39,8 @@ public final class Constants
     public static final int FRONT_RIGHT_POLARITY = 1;
     public static final int BACK_LEFT_POLARITY = 1;
     public static final int BACK_RIGHT_POLARITY = -1;
+
+
+    public static final int DEADSPACE_POSITIVE = 0.2;
+    public static final int DEADSPACE_NEGATIVE = -0.2;
 }
