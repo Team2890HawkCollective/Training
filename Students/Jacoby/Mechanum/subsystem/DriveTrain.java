@@ -44,12 +44,28 @@ public class DriveTrain extends SubsystemBase
   private static double deltaZ;
   private static double rInput;
 
-  private static ShuffleboardTab FLMPShuffle = Shuffleboard.getTab("frontLeftMotorPolarity");
-  private static ShuffleboardTab FRMPShuffle = Shuffleboard.getTab("frontRightMotorPolarity");
-  private static ShuffleboardTab BLMPShuffle = Shuffleboard.getTab("backLeftMotorPolarity");
-  private static ShuffleboardTab BRMPShuffle = Shuffleboard.getTab("backRightMotorPolarity");
-  private static ShuffleboardTab deadShuffle = Shuffleboard.getTab("deadband");
-  private static ShuffleboardTab speedShuffle = Shuffleboard.getTab("speed");
+  private static ShuffleboardTab tab= Shuffleboard.getTab("Main");
+
+  private NetworkTableEntry frontLeftMotorCoeff =
+      tab.add("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF)
+          .getEntry();
+  private NetworkTableEntry frontRightMotorCoeff =
+      tab.add("frontRightMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF)
+          .getEntry();
+  private NetworkTableEntry backLeftMotorCoeff =
+       tab.add("backLeftMotorCoeff", Constants.BACK_LEFT_MOTOR_COEFF)
+          .getEntry();
+
+          private NetworkTableEntry backRightMotorCoeff =
+          tab.add("backRightMotorCoeff", Constants.BACK_RIGHT_MOTOR_COEFF)
+              .getEntry();
+      private NetworkTableEntry deadband =
+          tab.add("deadband", dynamicPosDeadspace)
+              .getEntry();
+        private NetworkTableEntry speed =
+           tab.add("speed", dynamicSpeed)
+              .getEntry();
+          
 
   public static double dynamicPosDeadspace = edu.wpi.first.wpilibj.templates.commandbased.Constants.DEADSPACE_POSITIVE;
   public static double dynamicNegDeadspace = edu.wpi.first.wpilibj.templates.commandbased.Constants.DEADSPACE_NEGATIVE;
@@ -59,6 +75,9 @@ public class DriveTrain extends SubsystemBase
 
   private static int[] motorPolarity = {Constants.FRONT_LEFT_POLARITY, Constants.FRONT_RIGHT_POLARITY, Constants.BACK_LEFT_POLARITY, Constants.BACK_RIGHT_POLARITY};
 
+  public static double deadShuffle=Constants.DEADSPACE_POSITIVE;
+  public static double speedShuffle=Constants.SPEED_MOD;
+
   public static void updateShuffleboard()
   {
     motorCoefficients[0] = SmartDashboard.getNumber("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF);
@@ -66,13 +85,13 @@ public class DriveTrain extends SubsystemBase
     motorCoefficients[2] = SmartDashboard.getNumber("backLeftMotorCoeff", Constants.BACK_LEFT_MOTOR_COEFF);
     motorCoefficients[3] = SmartDashboard.getNumber("backRightMotorCoeff", Constants.BACK_RIGHT_MOTOR_COEFF);
 
-    motorPolarity[4] = SmartDashboard.getNumber("frontLeftMotorPolarity", Constants.FRONT_LEFT_POLARITY);
-    motorPolarity[5] = SmartDashboard.getNumber("frontRightMotorPolarity", Constants.FRONT_LEFT_POLARITY);
-    motorPolarity[6] = SmartDashboard.getNumber("backLeftMotorPolarity", Constants.BACK_LEFT_POLARITY);
-    motorPolarity[7] = SmartDashboard.getNumber("backRightMotorPolarity", Constants.BACK_RIGHT_POLARITY);
+    motorPolarity[0] = SmartDashboard.getNumber("frontLeftMotorPolarity", Constants.FRONT_LEFT_POLARITY);
+    motorPolarity[1] = SmartDashboard.getNumber("frontRightMotorPolarity", Constants.FRONT_LEFT_POLARITY);
+    motorPolarity[2] = SmartDashboard.getNumber("backLeftMotorPolarity", Constants.BACK_LEFT_POLARITY);
+    motorPolarity[3] = SmartDashboard.getNumber("backRightMotorPolarity", Constants.BACK_RIGHT_POLARITY);
 
-    motorCoefficients[8] = SmartDashboard.getNumber("deadband", dynamicPosDeadspace);
-    motorCoefficients[9] = SmartDashboard.getNumber("speed", dynamicSpeed);
+    deadShuffle = SmartDashboard.getNumber("deadband", dynamicPosDeadspace);
+    speedShuffle = SmartDashboard.getNumber("speed", dynamicSpeed);
     //SmartDashboard.putNumber("Compressor Pressure", phCompressor.getPressure());
   }
 
@@ -112,52 +131,52 @@ public class DriveTrain extends SubsystemBase
  }
 
  public static void driveForward(){
-    frontLeftSparkMax.set(dynamicSpeed*Constants.FRONT_LEFT_POLARITY);
-    frontRightSparkMax.set(dynamicSpeed*Constants.FRONT_RIGHT_POLARITY);
-    backLeftSparkMax.set(dynamicSpeed*Constants.BACK_LEFT_POLARITY);
-    backRightSparkMax.set(dynamicSpeed*Constants.BACK_RIGHT_POLARITY);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]);
+    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]);
+    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*motorCoefficients[2]);
+    backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*motorCoefficients[3]);
   }
   public static void driveBackward(){
-    frontLeftSparkMax.set(dynamicSpeed*Constants.FRONT_LEFT_POLARITY*Constants.POLARITY_SWAP);
-    frontRightSparkMax.set(dynamicSpeed*Constants.FRONT_RIGHT_POLARITY*Constants.POLARITY_SWAP);
-    backLeftSparkMax.set(dynamicSpeed*Constants.BACK_LEFT_POLARITY*Constants.POLARITY_SWAP);
-    backRightSparkMax.set(dynamicSpeed*Constants.BACK_RIGHT_POLARITY*Constants.POLARITY_SWAP);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*Constants.POLARITY_SWAP*motorCoefficients[0]);
+    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*Constants.POLARITY_SWAP*motorCoefficients[1]);
+    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*Constants.POLARITY_SWAP*motorCoefficients[2]);
+    backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*Constants.POLARITY_SWAP*motorCoefficients[3]);
   }
   public static void driveLeft(){
-    frontLeftSparkMax.set(dynamicSpeed*Constants.FRONT_LEFT_POLARITY*Constants.POLARITY_SWAP);
-    frontRightSparkMax.set(dynamicSpeed*Constants.FRONT_RIGHT_POLARITY*Constants.POLARITY_SWAP);
-    backLeftSparkMax.set(dynamicSpeed*Constants.BACK_LEFT_POLARITY);
-    backRightSparkMax.set(dynamicSpeed*Constants.BACK_RIGHT_POLARITY);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*Constants.POLARITY_SWAP*motorCoefficients[0]);
+    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*Constants.POLARITY_SWAP*motorCoefficients[1]);
+    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*motorCoefficients[2]);
+    backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*motorCoefficients[3]);
   }
   public static void driveRight(){
-    frontLeftSparkMax.set(dynamicSpeed*Constants.FRONT_LEFT_POLARITY);
-    frontRightSparkMax.set(dynamicSpeed*Constants.FRONT_RIGHT_POLARITY);
-    backLeftSparkMax.set(dynamicSpeed*Constants.BACK_LEFT_POLARITY*Constants.POLARITY_SWAP);
-    backRightSparkMax.set(dynamicSpeed*Constants.BACK_RIGHT_POLARITY*Constants.POLARITY_SWAP);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]);
+    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]);
+    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*Constants.POLARITY_SWAP*motorCoefficients[2]);
+    backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*Constants.POLARITY_SWAP*motorCoefficients[3]);
   }
   public static void driveAngleRight(){
-    frontLeftSparkMax.set(dynamicSpeed*Constants.FRONT_LEFT_POLARITY);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]);
     frontRightSparkMax.set(0);
-    backLeftSparkMax.set(dynamicSpeed*Constants.BACK_LEFT_POLARITY);
+    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*motorCoefficients[2]);
     backRightSparkMax.set(0);
   }
   public static void driveAngleLeft(){
     frontLeftSparkMax.set(0);
-    frontRightSparkMax.set(dynamicSpeed*Constants.FRONT_RIGHT_POLARITY);
+    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]);
     backLeftSparkMax.set(0);
-    backRightSparkMax.set(dynamicSpeed*Constants.BACK_RIGHT_POLARITY);
+    backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*motorCoefficients[3]);
   }
   public static void driveAngleRightBack(){
-    frontLeftSparkMax.set(dynamicSpeed*Constants.FRONT_LEFT_POLARITY*Constants.POLARITY_SWAP);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*Constants.POLARITY_SWAP*motorCoefficients[0]);
     frontRightSparkMax.set(0);
-    backLeftSparkMax.set(dynamicSpeed*Constants.BACK_LEFT_POLARITY*Constants.POLARITY_SWAP);
+    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*Constants.POLARITY_SWAP*motorCoefficients[2]);
     backRightSparkMax.set(0);
   }
   public static void driveAngleLeftBack(){
     frontLeftSparkMax.set(0);
-    frontRightSparkMax.set(dynamicSpeed*Constants.FRONT_RIGHT_POLARITY*Constants.POLARITY_SWAP);
+    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*Constants.POLARITY_SWAP*motorCoefficients[1]);
     backLeftSparkMax.set(0);
-    backRightSparkMax.set(dynamicSpeed*Constants.BACK_RIGHT_POLARITY*Constants.POLARITY_SWAP);
+    backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*Constants.POLARITY_SWAP*motorCoefficients[3]);
   }
 
 
