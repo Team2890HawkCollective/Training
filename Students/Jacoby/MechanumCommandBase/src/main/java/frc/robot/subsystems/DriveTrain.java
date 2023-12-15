@@ -64,21 +64,21 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
 
     final ShuffleboardTab tab = Shuffleboard.getTab("Jacoby");
 
-    final GenericEntry frontLeftMotorCoeff = tab.add("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF).getEntry();
-    final GenericEntry frontRightMotorCoeff = tab.add("frontRightMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF).getEntry();
-    final GenericEntry backLeftMotorCoeff = tab.add("backLeftMotorCoeff", Constants.BACK_LEFT_MOTOR_COEFF).getEntry();
-    final GenericEntry backRightMotorCoeff = tab.add("backRightMotorCoeff", Constants.BACK_RIGHT_MOTOR_COEFF).getEntry();
+    GenericEntry frontLeftMotorCoeff = tab.add("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF).getEntry();
+    GenericEntry frontRightMotorCoeff = tab.add("frontRightMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF).getEntry();
+    GenericEntry backLeftMotorCoeff = tab.add("backLeftMotorCoeff", Constants.BACK_LEFT_MOTOR_COEFF).getEntry();
+    GenericEntry backRightMotorCoeff = tab.add("backRightMotorCoeff", Constants.BACK_RIGHT_MOTOR_COEFF).getEntry();
   
-    final GenericEntry frontLeftMotorPolarity = tab.add("frontLeftMotorPolarity", Constants.FRONT_LEFT_POLARITY).getEntry();
-    final GenericEntry frontRightMotorPolarity = tab.add("frontRightMotorPolarity", Constants.FRONT_RIGHT_POLARITY).getEntry();
-    final GenericEntry backLeftMotorPolarity = tab.add("backLeftMotorPolarity", Constants.BACK_LEFT_POLARITY).getEntry();
-    final GenericEntry backRightMotorPolarity = tab.add("backRightMotorPolarity", Constants.BACK_RIGHT_POLARITY).getEntry();
+    GenericEntry frontLeftMotorPolarity = tab.add("frontLeftMotorPolarity", Constants.FRONT_LEFT_POLARITY).getEntry();
+    GenericEntry frontRightMotorPolarity = tab.add("frontRightMotorPolarity", Constants.FRONT_RIGHT_POLARITY).getEntry();
+    GenericEntry backLeftMotorPolarity = tab.add("backLeftMotorPolarity", Constants.BACK_LEFT_POLARITY).getEntry();
+    GenericEntry backRightMotorPolarity = tab.add("backRightMotorPolarity", Constants.BACK_RIGHT_POLARITY).getEntry();
   
-    final GenericEntry deadband = tab.add("deadband", dynamicPosDeadspace).getEntry();
-    final GenericEntry speed = tab.add("speed", dynamicSpeed).getEntry();
+    GenericEntry deadband = tab.add("deadband", dynamicPosDeadspace).getEntry();
+    GenericEntry speed = tab.add("speed", dynamicSpeed).getEntry();
             
-     GenericEntry frontRightMotorPolarityUpdate = tab.add("frontRightMotorPolarityUpdate", frontRightMotorPolarity).getEntry();
-
+   GenericEntry frontRightMotorPolarityUpdate = tab.add("frontRightMotorPolarityUpdate", frontRightMotorPolarity).getEntry();
+ 
     motorCoefficients[0] = frontLeftMotorCoeff.getDouble( Constants.FRONT_LEFT_MOTOR_COEFF);
     motorCoefficients[1] = frontRightMotorCoeff.getDouble( Constants.FRONT_LEFT_MOTOR_COEFF);
     motorCoefficients[2] = backLeftMotorCoeff.getDouble(Constants.BACK_LEFT_MOTOR_COEFF);
