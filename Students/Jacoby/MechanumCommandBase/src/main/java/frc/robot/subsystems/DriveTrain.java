@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import java.time.format.ResolverStyle;
 
-import javax.lang.model.util.ElementScanner14;
+//import javax.lang.model.util.ElementScanner14;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -70,13 +70,14 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
     final GenericEntry backRightMotorCoeff = tab.add("backRightMotorCoeff", Constants.BACK_RIGHT_MOTOR_COEFF).getEntry();
   
     final GenericEntry frontLeftMotorPolarity = tab.add("frontLeftMotorPolarity", Constants.FRONT_LEFT_POLARITY).getEntry();
-    final GenericEntry frontRightMotorPolarity = tab.add("frontRightMotorPolarity", Constants.FRONT_LEFT_POLARITY).getEntry();
+    final GenericEntry frontRightMotorPolarity = tab.add("frontRightMotorPolarity", Constants.FRONT_RIGHT_POLARITY).getEntry();
     final GenericEntry backLeftMotorPolarity = tab.add("backLeftMotorPolarity", Constants.BACK_LEFT_POLARITY).getEntry();
     final GenericEntry backRightMotorPolarity = tab.add("backRightMotorPolarity", Constants.BACK_RIGHT_POLARITY).getEntry();
   
     final GenericEntry deadband = tab.add("deadband", dynamicPosDeadspace).getEntry();
     final GenericEntry speed = tab.add("speed", dynamicSpeed).getEntry();
             
+     GenericEntry frontRightMotorPolarityUpdate = tab.add("frontRightMotorPolarityUpdate", frontRightMotorPolarity).getEntry();
 
     motorCoefficients[0] = frontLeftMotorCoeff.getDouble( Constants.FRONT_LEFT_MOTOR_COEFF);
     motorCoefficients[1] = frontRightMotorCoeff.getDouble( Constants.FRONT_LEFT_MOTOR_COEFF);
@@ -93,7 +94,7 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
       motorPolarity[0] = -1;
     }
 //----------------------------------
-    if (frontRightMotorPolarity.getDouble(Constants.FRONT_LEFT_POLARITY)>0)
+    if (frontRightMotorPolarity.getDouble(Constants.FRONT_RIGHT_POLARITY)>0)
     {
         motorPolarity[1] = 1;
     }
