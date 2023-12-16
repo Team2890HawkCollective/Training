@@ -9,7 +9,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.networktables.DoubleEntry;
 import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.networktables.GenericSubscriber;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -64,7 +66,7 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
 
     final ShuffleboardTab tab = Shuffleboard.getTab("Jacoby");
 
-    GenericEntry frontLeftMotorCoeff = tab.add("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF).getEntry();
+    DoubleEntry frontLeftMotorCoeff = (DoubleEntry) tab.add("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF).getEntry();
     GenericEntry frontRightMotorCoeff = tab.add("frontRightMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF).getEntry();
     GenericEntry backLeftMotorCoeff = tab.add("backLeftMotorCoeff", Constants.BACK_LEFT_MOTOR_COEFF).getEntry();
     GenericEntry backRightMotorCoeff = tab.add("backRightMotorCoeff", Constants.BACK_RIGHT_MOTOR_COEFF).getEntry();
@@ -79,7 +81,7 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
             
    GenericEntry frontRightMotorPolarityUpdate = tab.add("frontRightMotorPolarityUpdate", frontRightMotorPolarity).getEntry();
  
-    motorCoefficients[0] = frontLeftMotorCoeff.getDouble( Constants.FRONT_LEFT_MOTOR_COEFF);
+    motorCoefficients[0] = ((GenericSubscriber) frontLeftMotorCoeff).getDouble( Constants.FRONT_LEFT_MOTOR_COEFF);
     motorCoefficients[1] = frontRightMotorCoeff.getDouble( Constants.FRONT_LEFT_MOTOR_COEFF);
     motorCoefficients[2] = backLeftMotorCoeff.getDouble(Constants.BACK_LEFT_MOTOR_COEFF);
     motorCoefficients[3] = backRightMotorCoeff.getDouble( Constants.BACK_RIGHT_MOTOR_COEFF);
