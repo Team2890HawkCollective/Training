@@ -81,13 +81,13 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
             
     SmartDashboard.putNumber("frontRightMotorPolarityUpdate", motorPolarity[1]);
  
-    motorCoefficients[0] = SmartDashboard.getNumber( Constants.FRONT_LEFT_MOTOR_COEFF);
-    motorCoefficients[1] = SmartDashboard.getNumber( Constants.FRONT_LEFT_MOTOR_COEFF);
-    motorCoefficients[2] = SmartDashboard.getNumber(Constants.BACK_LEFT_MOTOR_COEFF);
-    motorCoefficients[3] = SmartDashboard.getNumber( Constants.BACK_RIGHT_MOTOR_COEFF);
+    motorCoefficients[0] = SmartDashboard.getNumber("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF);
+    motorCoefficients[1] = SmartDashboard.getNumber("frontRightMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF);
+    motorCoefficients[2] = SmartDashboard.getNumber("backLeftMotorCoeff", Constants.BACK_LEFT_MOTOR_COEFF);
+    motorCoefficients[3] = SmartDashboard.getNumber("backRightMotorCoeff", Constants.BACK_RIGHT_MOTOR_COEFF);
 
 
-    if (frontLeftMotorPolarity.getDouble( Constants.FRONT_LEFT_POLARITY)>0)
+    if (SmartDashboard.getNumber("frontLeftMotorPolarity", Constants.FRONT_LEFT_POLARITY)>0)
     {
       motorPolarity[0] = 1;
     }
@@ -96,7 +96,7 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
       motorPolarity[0] = -1;
     }
 //----------------------------------
-    if (frontRightMotorPolarity.getDouble(Constants.FRONT_RIGHT_POLARITY)>0)
+    if (SmartDashboard.getNumber("frontRightMotorPolarity", Constants.FRONT_RIGHT_POLARITY)>0)
     {
         motorPolarity[1] = 1;
     }
@@ -105,7 +105,7 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
       motorPolarity[1] = -1;
     }
 //----------------------------------
-    if (backLeftMotorPolarity.getDouble(Constants.BACK_LEFT_POLARITY)>0)
+    if (SmartDashboard.getNumber("backLeftMotorPolarity", Constants.BACK_LEFT_POLARITY)>0)
     {
       motorPolarity[2] = 1;
     }
@@ -114,7 +114,7 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
       motorPolarity[2] = -1;
     }
 //----------------------------------
-    if (backRightMotorPolarity.getDouble( Constants.BACK_RIGHT_POLARITY)>0)
+    if (SmartDashboard.getNumber("backRightMotorPolarity", Constants.BACK_RIGHT_POLARITY)>0)
     {
       motorPolarity[3] = 1;
     }
@@ -123,8 +123,8 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
       motorPolarity[3] = -1;
     }
 
-    deadShuffle = deadband.getDouble(dynamicPosDeadspace);
-    speedShuffle = speed.getDouble(dynamicSpeed);
+    deadShuffle = SmartDashboard.getNumber("deadband", dynamicPosDeadspace);
+    speedShuffle = SmartDashboard.getNumber("space", dynamicSpeed);
     //SmartDashboard.putNumber("Compressor Pressure", phCompressor.getPressure());
   }
 
