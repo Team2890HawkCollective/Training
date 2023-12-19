@@ -174,15 +174,15 @@ public static int counter=0;
     backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*Constants.POLARITY_SWAP*motorCoefficients[3]);
   }
   public static void driveLeft(){
-    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*Constants.POLARITY_SWAP*motorCoefficients[0]);
-    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]);
+    frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*Constants.POLARITY_SWAP*motorCoefficients[1]);
     backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*Constants.POLARITY_SWAP*motorCoefficients[2]);
     backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*motorCoefficients[3]);
   }
   public static void driveRight(){
-    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]);
+    frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*Constants.POLARITY_SWAP*motorCoefficients[0]);
     frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]);
-    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*Constants.POLARITY_SWAP*motorCoefficients[2]);
+    backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*motorCoefficients[2]);
     backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*Constants.POLARITY_SWAP*motorCoefficients[3]);
   }
   public static void driveAngleRight(){
