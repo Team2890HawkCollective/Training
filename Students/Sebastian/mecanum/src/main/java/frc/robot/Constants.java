@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 /**
@@ -60,17 +59,16 @@ public final class Constants {
             }
         }
 
-        public static final class MODIFIERS {
+        public static final class MODIFIER {
             public static final class FRONT {
                 public static final int LEFT = Constants.DRIVE_TRAIN.POLARITY.FRONT.LEFT * Constants.DRIVE_TRAIN.POLARITY.ALL * Constants.DRIVE_TRAIN.SPEED.ALL * Constants.DRIVE_TRAIN.SPEED.FRONT.LEFT;
                 public static final int RIGHT = Constants.DRIVE_TRAIN.POLARITY.FRONT.RIGHT * Constants.DRIVE_TRAIN.POLARITY.ALL * Constants.DRIVE_TRAIN.SPEED.ALL * Constants.DRIVE_TRAIN.SPEED.FRONT.RIGHT;
             }
     
             public static final class BACK {
-                public static final int LEFT = Constants.DRIVE_TRAIN.POLARITY.FRONT.LEFT * Constants.DRIVE_TRAIN.POLARITY.ALL * Constants.DRIVE_TRAIN.SPEED.ALL * Constants.DRIVE_TRAIN.SPEED.FRONT.LEFT;
-                public static final int RIGHT = Constants.DRIVE_TRAIN.POLARITY.FRONT.RIGHT * Constants.DRIVE_TRAIN.POLARITY.ALL * Constants.DRIVE_TRAIN.SPEED.ALL * Constants.DRIVE_TRAIN.SPEED.FRONT.RIGHT;
+                public static final int LEFT = Constants.DRIVE_TRAIN.POLARITY.BACK.LEFT * Constants.DRIVE_TRAIN.POLARITY.ALL * Constants.DRIVE_TRAIN.SPEED.ALL * Constants.DRIVE_TRAIN.SPEED.BACK.LEFT;
+                public static final int RIGHT = Constants.DRIVE_TRAIN.POLARITY.BACK.RIGHT * Constants.DRIVE_TRAIN.POLARITY.ALL * Constants.DRIVE_TRAIN.SPEED.ALL * Constants.DRIVE_TRAIN.SPEED.BACK.RIGHT;
             }
         }
     }
-}
 }
