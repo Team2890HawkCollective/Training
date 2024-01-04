@@ -48,10 +48,11 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
 
   private static double xInput;
   private static double yInput;
-  private static double deltaZ;
   private static double rInput;
 
-
+  private static double deltaZ;
+  private static double deltaY;
+  private static double deltaX;
 
   public static double dynamicPosDeadspace = frc.robot.Constants.DEADSPACE_POSITIVE;
   public static double dynamicNegDeadspace = frc.robot.Constants.DEADSPACE_NEGATIVE;
@@ -85,9 +86,14 @@ public static int counter=0;
   
     SmartDashboard.putNumber("deadband", dynamicPosDeadspace);
     SmartDashboard.putNumber("speed", dynamicSpeed);
+
+    gyro.resetDisplacement();
+    SmartDashboard.putNumber("deltaZ", deltaZ);
+    SmartDashboard.putNumber("deltaX", deltaX);
+    SmartDashboard.putNumber("deltaY", deltaY);
     counter++;
     }
-            
+          
     SmartDashboard.putNumber("frontRightMotorPolarityUpdate", motorPolarity[1]);
  
     motorCoefficients[0] = SmartDashboard.getNumber("frontLeftMotorCoeff", Constants.FRONT_LEFT_MOTOR_COEFF);
@@ -134,7 +140,29 @@ public static int counter=0;
 
     deadShuffle = SmartDashboard.getNumber("deadband", dynamicPosDeadspace);
     speedShuffle = SmartDashboard.getNumber("space", dynamicSpeed);
-    //SmartDashboard.putNumber("Compressor Pressure", phCompressor.getPressure());
+
+    getDeltaX();
+    getDeltaY();
+    getDeltaZ();
+  }
+
+  public static double getDeltaZ()
+  {
+    deltaZ = gyro.getDisplacementZ();
+
+    return deltaZ;
+  }
+  public static double getDeltaY()
+  {
+    deltaY = gyro.getDisplacementY();
+
+    return deltaY;
+  }
+  public static double getDeltaX()
+  {
+    deltaY = gyro.getDisplacementX();
+
+    return deltaX;
   }
 
   public static void brakeModeToggle()
