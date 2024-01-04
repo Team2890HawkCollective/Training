@@ -50,9 +50,12 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
   private static double yInput;
   private static double rInput;
 
-  private static double deltaZ;
-  private static double deltaY;
-  private static double deltaX;
+  private static double accZ;
+  private static double accY;
+  private static double accX;
+  private static double roll;
+  private static double pitch;
+  private static double yaw;
 
   public static double dynamicPosDeadspace = frc.robot.Constants.DEADSPACE_POSITIVE;
   public static double dynamicNegDeadspace = frc.robot.Constants.DEADSPACE_NEGATIVE;
@@ -88,9 +91,12 @@ public static int counter=0;
     SmartDashboard.putNumber("speed", dynamicSpeed);
 
     gyro.resetDisplacement();
-    SmartDashboard.putNumber("deltaZ", deltaZ);
-    SmartDashboard.putNumber("deltaX", deltaX);
-    SmartDashboard.putNumber("deltaY", deltaY);
+    SmartDashboard.putNumber("accZ", accZ);
+    SmartDashboard.putNumber("accX", accX);
+    SmartDashboard.putNumber("accY", accY);
+    SmartDashboard.putNumber("roll", roll);
+    SmartDashboard.putNumber("yaw", yaw);
+    SmartDashboard.putNumber("pitch", pitch);
     counter++;
     }
           
@@ -141,28 +147,49 @@ public static int counter=0;
     deadShuffle = SmartDashboard.getNumber("deadband", dynamicPosDeadspace);
     speedShuffle = SmartDashboard.getNumber("space", dynamicSpeed);
 
-    getDeltaX();
-    getDeltaY();
-    getDeltaZ();
+    getAccX();
+    getAccY();
+    getAccZ();
+    getPitch();
+    getRoll();
+    getYaw();
   }
 
-  public static double getDeltaZ()
+  public static double getAccZ()
   {
-    deltaZ = gyro.getDisplacementZ();
+    accZ = gyro.getRawAccelZ();
 
-    return deltaZ;
+    return accZ;
   }
-  public static double getDeltaY()
+  public static double getAccY()
   {
-    deltaY = gyro.getDisplacementY();
+    accY = gyro.getRawAccelY();
 
-    return deltaY;
+    return accY;
   }
-  public static double getDeltaX()
+  public static double getAccX()
   {
-    deltaY = gyro.getDisplacementX();
+    accY = gyro.getRawAccelX();
 
-    return deltaX;
+    return accX;
+  }
+  public static double getPitch()
+  {
+    pitch = gyro.getPitch();
+
+    return pitch;
+  }
+  public static double getRoll()
+  {
+    roll = gyro.getRoll();
+
+    return roll;
+  }
+  public static double getYaw()
+  {
+    yaw = gyro.getYaw();
+
+    return yaw;
   }
 
   public static void brakeModeToggle()
