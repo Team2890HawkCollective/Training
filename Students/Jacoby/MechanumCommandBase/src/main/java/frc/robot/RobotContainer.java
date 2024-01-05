@@ -4,10 +4,12 @@
 
 package frc.robot;
 
+import frc.robot.subsystems.Autonomous;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.AutonomousCommand;
 import frc.robot.commands.DriveTrainCommand;
 
 /**
@@ -22,6 +24,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrainSubsystem = new DriveTrain();
   private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_driveTrainSubsystem);
+  private final Autonomous m_autonomousSubsystem = new Autonomous();
+  private final AutonomousCommand m_autonomousCommand = new AutonomousCommand(m_driveTrainSubsystem);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
 
 
@@ -38,7 +42,6 @@ public class RobotContainer {
   public Command getDriveTrainCommand() {
       return m_driveTrainCommand;
   }
-
 
 
   /**
@@ -58,7 +61,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return null;
+    return m_autonomousCommand;
   }
 }

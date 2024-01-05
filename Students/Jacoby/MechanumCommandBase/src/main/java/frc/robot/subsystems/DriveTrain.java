@@ -48,7 +48,7 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
 
   private static double xInput;
   private static double yInput;
-  private static double rInput;
+  private static double rInput=0;
 
   private static double accZ;
   private static double accY;
@@ -267,7 +267,7 @@ public static int counter=0;
     backLeftSparkMax.set(0);
     backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*Constants.POLARITY_SWAP*motorCoefficients[3]);
   }
-  public static void twist()
+  public static void twist(int twistput)
   {
     if (rInput>0)
     {
@@ -277,6 +277,20 @@ public static int counter=0;
       backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*motorCoefficients[3]*Constants.POLARITY_SWAP);
     }
     else if (rInput<0)
+    {
+      frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]*Constants.POLARITY_SWAP);
+      frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]);
+      backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*motorCoefficients[2]*Constants.POLARITY_SWAP);
+      backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*motorCoefficients[3]);
+    }
+    else if (twistput>0)
+    {
+      frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]);
+      frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]*Constants.POLARITY_SWAP);
+      backLeftSparkMax.set(dynamicSpeed*motorPolarity[2]*motorCoefficients[2]);
+      backRightSparkMax.set(dynamicSpeed*motorPolarity[3]*motorCoefficients[3]*Constants.POLARITY_SWAP);
+    }
+    else if (twistput<0)
     {
       frontLeftSparkMax.set(dynamicSpeed*motorPolarity[0]*motorCoefficients[0]*Constants.POLARITY_SWAP);
       frontRightSparkMax.set(dynamicSpeed*motorPolarity[1]*motorCoefficients[1]);
@@ -346,7 +360,7 @@ public static int counter=0;
     }
     else 
     {
-      twist();
+      twist(0);
     }
     
     
