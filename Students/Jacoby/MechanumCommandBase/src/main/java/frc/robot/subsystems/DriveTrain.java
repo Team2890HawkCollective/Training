@@ -18,6 +18,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
@@ -49,6 +50,8 @@ private static CANSparkMax frontLeftSparkMax = new CANSparkMax(Constants.MOTOR_F
   private static double xInput;
   private static double yInput;
   private static double rInput=0;
+
+  private static Servo driveTrainServo=new Servo(1);
 
   private static double accZ;
   private static double accY;
@@ -362,8 +365,18 @@ public static int counter=0;
     {
       twist(0);
     }
-    
-    
+  }
+  public static void moveDriveServo()
+  {
+    if (driverController.getLeftBumper())
+    {
+      driveTrainServo.setAngle(0);
+    }
+    else if (driverController.getRightBumper())
+    {
+      driveTrainServo.setAngle(180);
+    }
+  }
     
     
     
@@ -389,6 +402,6 @@ public static int counter=0;
       motorCoefficients);
     }
     */
-  }
+
 
 }

@@ -20,6 +20,7 @@ public final class Constants
     public static final int MOTOR_FRONT_RIGHT = 2;
     public static final int MOTOR_BACK_LEFT = 3;
     public static final int MOTOR_BACK_RIGHT = 4;
+    public static final int MOTOR_SERVO_DRIVETRAIN=5;
 
     public static final int DRIVER_XBOX_CONTROLLER_PORT = 0;
 
