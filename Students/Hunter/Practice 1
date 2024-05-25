@@ -1,0 +1,28 @@
+package exercise1page15 
+public class 1
+    public staic void main(string[]) args9{
+    double Quarter = .25;
+    double quarters = 65;
+    
+    double totalcost = Quater * quarters;
+    system.out.println("Quarters: " + totalcost);
+    
+    int equalquater = quaters % 3;
+    
+    double leftover = quarters - equal-quaters;
+    system.out.println("leftover: " + leftover);
+    
+    double person$ = equal-quarters * Quarter;
+    system.out.println("persons $: " + person$);
+    
+    int john = equalquater;
+    int jack = equalquater;
+    int jude = equalquater;
+    
+    int jack2 = jack + john;
+    system.out.println("jack and john: " + jack2);
+    
+    int jack3 = jack2 + leftover;
+    system.out.println("leftovers, jack and john: " + jack3);
+    }
+    }
